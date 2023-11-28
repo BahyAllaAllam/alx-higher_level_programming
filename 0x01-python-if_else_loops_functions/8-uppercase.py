@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 def islower(c):
-    if ord(c) in range(ord('a'), ord('z')):
+    if ord(c) in range(ord('a'), ord('z')+1):
         return True
     else:
         return False
+
 
 def uppercase(str):
     for i in str:
