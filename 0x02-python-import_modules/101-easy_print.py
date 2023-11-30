@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-import myprintt from my-print101
+import myprint101
