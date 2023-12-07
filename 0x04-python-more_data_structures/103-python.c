@@ -41,7 +41,7 @@ void print_python_bytes(PyObject *p)
 */
 void print_python_list(PyObject *p)
 {
-	Py_ssize_t size, alloc, i;
+	Py_ssize_t size, i;
 	PyObject *element;
 
 	size = ((PyVarObject *)p)->ob_size;
