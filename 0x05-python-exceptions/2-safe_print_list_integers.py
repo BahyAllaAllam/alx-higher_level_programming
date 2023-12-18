@@ -2,10 +2,13 @@
 def safe_print_list_integers(my_list=[], x=0):
     count = 0
     try:
-        for item in my_list[:x]:
+        iterator = iter(my_list)
+        for _ in range(x):
             try:
-                print("{:d}".format(item), end='')
-                count += 1
+                value = next(iterator)
+                if isinstance(value, int):
+                    print("{:d}".format(value), end=' ')
+                    count += 1
             except (ValueError, TypeError):
                 continue
         print()
@@ -13,3 +16,5 @@ def safe_print_list_integers(my_list=[], x=0):
     except TypeError:
         print("Exception: x must be an integer")
         return count
+    except StopIteration:
+        raise IndexError("list index out of range")
