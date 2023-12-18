@@ -7,10 +7,9 @@ def safe_print_list(my_list=[], x=0):
             count += 1
         print()
         return count
-    except TypeError:
-        print("Error: Input should be a list.")
+    except TypeError as e:
+        print("Error:", e)
         return 0
-    except:
-        print("An error occurred.")
+    except Exception as e:
+        print("An error occurred:", e)
         return 0
-
