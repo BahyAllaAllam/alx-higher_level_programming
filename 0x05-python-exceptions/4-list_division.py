@@ -5,9 +5,14 @@ def list_division(my_list_1, my_list_2, list_length):
         try:
             if i >= len(my_list_1) or i >= len(my_list_2):
                 raise IndexError("out of range")
-
-            dividend = my_list_1[i] if isinstance(my_list_1[i], (int, float)) else None
-            divisor = my_list_2[i] if isinstance(my_list_2[i], (int, float)) else None
+            if isinstance(my_list_1[i], (int, float)):
+                dividend = my_list_1[i]
+            else:
+                dividend = None
+            if isinstance(my_list_2[i], (int, float)):
+                divisor = my_list_2[i]
+            else:
+                divisor = None
 
             if dividend is None or divisor is None:
                 result.append(0)
