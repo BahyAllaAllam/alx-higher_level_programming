@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Represents a class that emulates the given bytecode functionality."""
+
+
 import math
 
 
