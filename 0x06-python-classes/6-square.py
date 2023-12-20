@@ -1,17 +1,26 @@
 #!/usr/bin/python3
-"""Square module."""
+"""Define a class square."""
 
 
 class Square:
     """Define a square."""
 
-    def __init__(self, size=0):
+    def __init__(self, size=0, position=(0, 0)):
         """Constructor.
 
         Args:
             size: length of a side of the square (default 0).
+            position: tuple of 2 positive integers
+                        for position (default (0, 0)).
+
+        Raises:
+            TypeError: if size is not an integer or
+                            if position is not a tuple of 2 positive integers
+            ValueError: if size is less than 0 or
+                            if position contains non-positive integers
         """
         self.size = size
+        self.position = position
 
     @property
     def size(self):
@@ -59,18 +68,13 @@ class Square:
         self.__position = value
 
     def area(self):
-        """Area of this square.
-
-        Returns:
-            The size squared.
-        """
-        return self.__size ** 2
+        """Calculate the area of the square."""
+        return self.__size * self.__size
 
     def my_print(self):
-        """Print the square with '#' character."""
+        """Print the square with '#' character and position."""
         if self.__size == 0:
             print()
-            return
         else:
             for _ in range(self.__position[1]):
                 print()
