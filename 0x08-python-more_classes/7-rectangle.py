@@ -5,12 +5,8 @@ Defining an empty class Ractangle
 
 
 class Rectangle:
-    """
-    A class representing a rectangle.
-    """
-
     number_of_instances = 0
-    print_symbol = "#"
+    print_symbol = '#'
 
     def __init__(self, width=0, height=0):
         self.width = width
@@ -52,14 +48,14 @@ class Rectangle:
         )
 
     def __str__(self):
-        if self.__width == 0 or self.__height == 0:
+        if not self.__width or not self.__height:
             return ""
-        symbol_line = str(Rectangle.print_symbol) * self.__width
-        return '\n'.join(symbol_line for _ in range(self.__height))
+        symbol = str(self.print_symbol)
+        return '\n'.join([symbol * self.__width for _ in range(self.__height)])
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.__width}, {self.__height})"
+        return f"Rectangle({self.__width}, {self.__height})"
 
     def __del__(self):
-        print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
+        print("Bye rectangle...")
