@@ -6,6 +6,7 @@ Defining an empty class Ractangle
 
 import sys
 
+
 def is_safe(board, row, col, N):
     for i in range(col):
         if board[row][i] == 1:
@@ -21,11 +22,13 @@ def is_safe(board, row, col, N):
 
     return True
 
+
 def solve_nqueens(N):
     board = [[0 for _ in range(N)] for _ in range(N)]
     solutions = []
     solve_util(N, board, 0, solutions)
     return solutions
+
 
 def solve_util(N, board, col, solutions):
     if col == N:
@@ -46,6 +49,7 @@ def solve_util(N, board, col, solutions):
 
     return res
 
+
 def main():
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
@@ -64,6 +68,7 @@ def main():
     solutions = solve_nqueens(N)
     for solution in solutions:
         print(solution)
+
 
 if __name__ == "__main__":
     main()
