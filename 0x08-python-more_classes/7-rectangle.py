@@ -5,6 +5,10 @@ Defining an empty class Ractangle
 
 
 class Rectangle:
+    """
+    A class representing a rectangle.
+    """
+
     number_of_instances = 0
     print_symbol = '#'
 
