@@ -63,7 +63,12 @@ def matrix_mul(m_a, m_b):
 
     if m_b_notrect:
         raise TypeError("each row of m_b must should be of the same size")
-
+    a_row_length = len(m_a[0])
+    if any(len(row) != a_row_length for row in m_a):
+        raise TypeError("each row of m_a must be of the same size")
+    b_row_length = len(m_b[0])
+    if any(len(row) != b_row_length for row in m_b):
+        raise TypeError("each row of m_b must be of the same size")
     if len(m_a[0]) != len(m_b):
         raise ValueError("m_a and m_b can't be multiplied")
 
@@ -77,6 +82,7 @@ def matrix_mul(m_a, m_b):
             res[i].append(c)
 
     return res
+
 
 if __name__ == "__main__":
     import doctest
