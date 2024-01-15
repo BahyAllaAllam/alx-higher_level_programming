@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Rectangle class."""
+"""Moudle for Rectangle class."""
 from models.base import Base
 
 
@@ -15,6 +15,7 @@ class Rectangle(Base):
         self.y = y
 
     def __str__(self):
+        """String format of the class."""
         return '[Rectangle] ({}) {}/{} - {}/{}'.\
             format(self.id, self.x, self.y, self.width,
                    self.height)
@@ -41,7 +42,7 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """x of this rectangle."""
+        """X of this rectangle."""
         return self.__x
 
     @x.setter
@@ -51,7 +52,7 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """y of this rectangle."""
+        """Y of this rectangle."""
         return self.__y
 
     @y.setter
@@ -61,6 +62,7 @@ class Rectangle(Base):
 
     @staticmethod
     def check_positive_integer(value, attribute_name):
+        """Check positive integer."""
         if type(value) != int or not isinstance(attribute_name, str):
             raise TypeError("{} must be an integer".format(attribute_name))
         elif value <= 0 and attribute_name in ["height", "width"]:
@@ -69,14 +71,17 @@ class Rectangle(Base):
             raise ValueError("{} must be >= 0".format(attribute_name))
 
     def area(self):
+        """Area of rectangle"""
         return self.__width * self.__height
 
     def display(self):
+        """Display rectangle properties"""
         s = '\n' * self.y + \
             (' ' * self.x + '#' * self.width + '\n') * self.height
         print(s, end='')
 
     def update(self, *args, **kwargs):
+        """Updtae the rectangle values"""
         if args:
             self.id = args[0] if len(args) >= 1 else self.id
             self.width = args[1] if len(args) >= 2 else self.__width
@@ -88,6 +93,7 @@ class Rectangle(Base):
                 setattr(self, key, value)
 
     def to_dictionary(self):
+        """Convert rectangle values to dictionary"""
         return {
             'id': self.id,
             'width': self.width,
