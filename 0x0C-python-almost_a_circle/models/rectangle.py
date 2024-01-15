@@ -75,13 +75,13 @@ class Rectangle(Base):
         return self.__width * self.__height
 
     def display(self):
-        """Display rectangle properties"""
+        """Display rectangle"""
         s = '\n' * self.y + \
             (' ' * self.x + '#' * self.width + '\n') * self.height
         print(s, end='')
 
     def update(self, *args, **kwargs):
-        """Updtae the rectangle values"""
+        """Updtae the rectangle"""
         if args:
             self.id = args[0] if len(args) >= 1 else self.id
             self.width = args[1] if len(args) >= 2 else self.__width
@@ -93,7 +93,7 @@ class Rectangle(Base):
                 setattr(self, key, value)
 
     def to_dictionary(self):
-        """Convert rectangle values to dictionary"""
+        """Convert rectangle to dictionary"""
         return {
             'id': self.id,
             'width': self.width,
