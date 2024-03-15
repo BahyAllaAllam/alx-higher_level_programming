@@ -10,16 +10,30 @@ import sys
 
 if __name__ == '__main__':
 
+    # Check if the correct number of arguments is provided
+    if len(sys.argv) != 4:
+        print('Usage: python 0-select_states.py'
+              '<username> <password> <database>')
+        sys.exit(1)
 
-    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
-                         passwd=argv[2], db=argv[3])
+    # Extract command-line arguments
+    username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
+
+    try:
+        db = MySQLdb.connect(host="localhost", port=3306, user=username,
+                             passwd=password, db=database)
 
 
-    cur = db.cursor()
-    cur.execute("SELECT * FROM states")
+        cur = db.cursor()
+        cur.execute("SELECT * FROM states")
 
-    rows = cur.fetchall()
-    for i in rows:
-        print(i)
-    cur.close()
-    db.close()
+        rows = cur.fetchall()
+        for row in rows:
+            print(row)
+
+    except MySQLdb.Error as e:
+        print(f"Error connecting to MySQL database: {e}")
+        sys.exit(1)
+    finally:
+        if db:
+            db.close()
