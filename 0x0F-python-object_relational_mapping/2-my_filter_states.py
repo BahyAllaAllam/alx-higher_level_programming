@@ -1,27 +1,52 @@
 #!/usr/bin/python3
 """
-Script that takes in an argument and displays all values in the states
-table of hbtn_0e_0_usa where name matches the argument
+This script connects to a MySQL server and displays all values in the states table
+where the name matches the provided argument.
 """
+
 import MySQLdb
-from sys import argv
+import sys
 
-# The code should not be executed when imported
-if __name__ == '__main__':
+def filter_states(username, password, database, state_name):
+    """
+    Connects to the MySQL server and filters states by the provided name.
 
-    # make a connection to the database
-    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
-                         passwd=argv[2], db=argv[3])
+    Args:
+        username (str): MySQL username.
+        password (str): MySQL password.
+        database (str): Database name.
+        state_name (str): State name to search for.
 
-    # It gives us the ability to have multiple seperate working environments
-    # through the same connection to the database.
-    cur = db.cursor()
-    nmeSr = "SELECT * FROM states WHERE name LIKE BINARY '{}'".format(argv[4])
-    cur.execute(nmeSr)
+    Returns:
+        None
+    """
+    try:
+        # Connect to the MySQL server
+        conn = MySQLdb.connect(host='localhost', port=3306, user=username,
+                               passwd=password, db=database)
+        cursor = conn.cursor()
 
-    rows = cur.fetchall()
-    for i in rows:
-        print(i)
-    # Clean up process
-    cur.close()
-    db.close()
+        # Create and execute the SQL query using format with user input
+        query = ("SELECT id, name FROM states WHERE name = '{}' "
+                 "ORDER BY id ASC").format(state_name)
+        cursor.execute(query)
+
+        # Fetch all rows and display them
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+
+    except MySQLdb.Error as e:
+        print(f"Error connecting to MySQL database: {e}")
+        sys.exit(1)
+    finally:
+        if conn:
+            conn.close()
+
+if __name__ == "__main__":
+    if len(sys.argv) != 5:
+        print("Usage: python 2-my_filter_states.py <username> <password> <database> <state_name>")
+        sys.exit(1)
+
+    username, password, database, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+    filter_states(username, password, database, state_name)
