@@ -30,12 +30,7 @@ if __name__ == '__main__':
         # Query all City objects with their corresponding State objects
         for city in session.query(City).order_by(City.id):
             print(
-                "{city.id}: {city.name} -> {city.state.name}"
-                .format(
-                    city.id=city.id,
-                    city.name=city.name,
-                    city.state.name=city.state.name
-                )
+                "{}: {} -> {}".format(city.id, city.name, city.state.name)
             )
 
         # Close session
