@@ -23,9 +23,9 @@ if __name__ == '__main__':
                                  passwd=password, db=database)
 
             cur = db.cursor()
-            query = 'SELECT GROUP_CONCAT(cities.name SEPARATOR \', \') \
+            query = "SELECT cities.id, cities.name, states.name \
                     FROM cities JOIN states ON cities.state_id = states.id \
-                    WHERE states.name = %s ORDER BY cities.id ASC;'
+                    WHERE states.name = %s ORDER BY cities.id ASC"
             cur.execute(query, (state_name,))
 
             row = cur.fetchone()
