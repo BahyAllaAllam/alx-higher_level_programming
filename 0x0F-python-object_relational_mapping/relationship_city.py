@@ -11,6 +11,7 @@ class City(Base):
     '''the class definition of a City'''
 
     __tablename__ = 'cities'
+
     id = Column(
         Integer,
         unique=True,
