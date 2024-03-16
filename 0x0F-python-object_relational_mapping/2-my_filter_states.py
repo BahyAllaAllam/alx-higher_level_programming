@@ -29,7 +29,7 @@ def filter_states(username, password, database, state_name):
         cursor = conn.cursor()
 
         # Create and execute the SQL query using format with user input
-        query = ("SELECT id, name FROM states WHERE name = '{}' "
+        query = ("SELECT * FROM states WHERE name = '{}' "
                  "ORDER BY id ASC;").format(state_name)
         cursor.execute(query)
 
