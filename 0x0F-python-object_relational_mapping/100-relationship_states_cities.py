@@ -26,14 +26,13 @@ if __name__ == '__main__':
             .format(username, password, database)
         )
         Base.metadata.create_all(engine)
-        Session = sessionmaker(bind=engine)
-        session = Session()
+        session = Session(engine)
 
         # Create the State "California" with the City "San Francisco"
         california = State(name="California")
-        san_francisco = City(name="San Francisco", state=california)
-        session.add(california)
-        session.add(san_francisco)
+        san_francisco = City(name="San Francisco")
+        california.cities.append(san_francisco)
+        session.add_all(california, san_francisco)
         session.commit()
 
         # Close session
