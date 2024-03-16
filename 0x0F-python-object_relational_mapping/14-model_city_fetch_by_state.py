@@ -24,16 +24,17 @@ if __name__ == '__main__':
             'mysql+mysqldb://{}:{}@localhost:3306/{}'
             .format(username, password, database)
         )
+        Base.metadata.create_all(engine)
         Session = sessionmaker(bind=engine)
         session = Session()
 
         # Query all City objects and their respective state names
-        cities = session.query(City).join(State).order_by(City.id).all()
+        cities = session.query(State, City).join(City).order_by(City.id)
 
         # Print the results in the specified format
-        for city in cities:
+        for state, city in cities:
             print(
-                "{}: ({}) {}".format(city.state.name, city.id, city.name)
+                "{}: ({}) {}".format(state.name, city.id, city.name)
             )
 
         # Close session
