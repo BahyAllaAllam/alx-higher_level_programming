@@ -22,7 +22,8 @@ if __name__ == '__main__':
 
         # Create engine and bind session
         engine = create_engine(
-            f'mysql+mysqldb://{username}:{password}@localhost:3306/{database}'
+            'mysql+mysqldb://{}:{}@localhost:3306/{}'
+            .format(username, password, database)
         )
         Base.metadata.create_all(engine)
         Session = sessionmaker(bind=engine)
@@ -34,9 +35,6 @@ if __name__ == '__main__':
         session.add(california)
         session.add(san_francisco)
         session.commit()
-
-        print("State 'California' with City 'San Francisco' "
-              "created successfully.")
 
         # Close session
         session.close()
