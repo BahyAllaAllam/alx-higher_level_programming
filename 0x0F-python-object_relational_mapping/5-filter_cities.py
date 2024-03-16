@@ -28,11 +28,9 @@ if __name__ == '__main__':
                     WHERE states.name = %s ORDER BY cities.id ASC"
             cur.execute(query, (state_name,))
 
-            row = cur.fetchone()
-            if row:
-                print(row[0])
-            else:
-                print(f"No cities found for state '{state_name}'")
+            rows = cur.fetchall()
+
+            print(', '.join(map(lambda x: x[0], rows)))
 
             cur.close()
             db.close()
