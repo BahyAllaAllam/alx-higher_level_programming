@@ -21,7 +21,8 @@ if __name__ == '__main__':
 
         # Create engine and bind session
         engine = create_engine(
-            f'mysql+mysqldb://{username}:{password}@localhost:3306/{database}'
+            'mysql+mysqldb://{}:{}@localhost:3306/{}'
+            .format(username, password, database)
         )
         Session = sessionmaker(bind=engine)
         session = Session()
@@ -31,7 +32,9 @@ if __name__ == '__main__':
 
         # Print the results in the specified format
         for city in cities:
-            print(f"{city.state.name}: ({city.id}) {city.name}")
+            print(
+                "{}: ({}) {}".format(city.state.name, city.id, city.name)
+            )
 
         # Close session
         session.close()
