@@ -17,5 +17,3 @@ if __name__ == "__main__":
         request_id = headers.get('X-Request-Id')
         if request_id:
             print(request_id)
-        else:
-            print("X-Request-Id not found in the response headers.")
