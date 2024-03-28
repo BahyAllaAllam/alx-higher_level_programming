@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import urllib.request
+from urllib.request import urlopen
 import sys
 
 url = sys.argv[1]
@@ -7,9 +7,8 @@ url = sys.argv[1]
 with urlopen(url) as req:
     headers = req.getheaders()
     for head in headers:
-        if header[0].lower() == "x-request-id":
-            print(header[1])
+        if head[0].lower() == "x-request-id":
+            print(head[1])
             break
     else:
         print("X-Request-Id header not found.")
-
