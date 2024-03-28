@@ -4,10 +4,12 @@ import sys
 
 url = sys.argv[1]
 
-with urllib.request.urlopen(url) as response:
-    request_id = response.getheader('X-Request-Id')
-    if request_id:
-        print(request_id)
+with urlopen(url) as req:
+    headers = req.getheaders()
+    for head in headers:
+        if header[0].lower() == "x-request-id":
+            print(header[1])
+            break
     else:
-        print("X-Request-Id not found in the response headers.")
+        print("X-Request-Id header not found.")
 
