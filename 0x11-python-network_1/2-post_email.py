@@ -19,4 +19,3 @@ if __name__ == "__main__":
     with urllib.request.urlopen(url, data=data) as response:
         body = response.read().decode('utf-8')
         print("Your email is:", email)
-        print(body)
