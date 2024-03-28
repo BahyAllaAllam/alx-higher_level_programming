@@ -1,4 +1,4 @@
 #!/bin/bash
 # Check if the user provided a URL
-curl -s -w "%{size_download}" -o /dev/null "$1"
+curl -sI ALLOW $1 -L | grep "Allow" | cut -d " " -f2-
 
