@@ -10,3 +10,4 @@ with urllib.request.urlopen(url) as response:
         print(request_id)
     else:
         print("X-Request-Id not found in the response headers.")
+
