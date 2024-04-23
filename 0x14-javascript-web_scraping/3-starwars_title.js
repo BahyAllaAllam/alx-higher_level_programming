@@ -6,6 +6,5 @@ const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
 request(apiUrl, (error, response, body) => {
     body = JSON.parse(body);
-    console.log(movieData.title);
-  }
+    console.log(body.title);
 });
